@@ -1,0 +1,39 @@
+{
+  "name": "Adalberto ❤ Flávia",
+  "short_name": "AdalbertoFlavis",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#ed143d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "img/heart16.png",
+      "type": "image/png", "sizes": "16x16"
+    },
+    {
+      "src": "img/heart24.png",
+      "type": "image/png", "sizes": "24x24"
+    },
+    {
+      "src": "img/heart32.png",
+      "type": "image/png","sizes": "32x32"
+    },
+    {
+      "src": "img/heart64.png",
+      "type": "image/png", "sizes": "64x64"
+    },
+    {
+      "src": "img/heart128.png",
+      "type": "image/png", "sizes": "128x128"
+    },
+    {
+      "src": "img/heart256.png",
+      "type": "image/png", "sizes": "256x256"
+    },
+    {
+      "src": "img/heart512.png",
+      "type": "image/png", "sizes": "512x512"
+    }
+  ]
+}
