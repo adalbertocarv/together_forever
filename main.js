@@ -25,7 +25,7 @@ const startLove = () => {
         ? Math.floor(days / 365) + 'A ❤ '
         : Math.floor(days / 365) + 'A ❤ ' + (days % 365) + 'D'
       : days + 'D'
-  } ❤ ${hours}H ❤ ${minutes}M`;
+  } ❤ ${hours}H ❤ ${minutes}Min`;
 
   function startTime() {
     var today = new Date();
@@ -74,7 +74,7 @@ const startMarried = () => {
         ? Math.floor(days / 365) + 'A ❤ '
         : Math.floor(days / 365) + 'A ❤ ' + (days % 365) + 'D'
       : days + 'D'
-  } ❤ ${hours}H ❤ ${minutes}M`;
+  } ❤ ${hours}H ❤ ${minutes}Min`;
 
   function startTime() {
     var today = new Date();
