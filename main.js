@@ -29,7 +29,7 @@ const startLove = () => {
 
   function startTime() {
     var today = new Date();
-    var h = today.getHours();
+    var h = today.getHours() - 5;
     var m = today.getMinutes();
     var s = today.getSeconds();
     m = checkTime(m);
