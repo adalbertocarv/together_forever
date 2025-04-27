@@ -25,7 +25,7 @@ const startLove = () => {
         ? Math.floor(days / 365) + 'A ❤ '
         : Math.floor(days / 365) + 'A ❤ ' + (days % 365) + 'D'
       : days + 'D'
-  } ❤ ${hours}H ❤ ${minutes}Min`;
+  }`;  
 
   function startTime() {
     var today = new Date();
@@ -34,10 +34,11 @@ const startLove = () => {
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-
-    timeNow.innerHTML = `${h} : ${m} : ${s}`;
+  
+    timeNow.innerHTML = `${h}h ${m}min ${s}s`;
     setTimeout(startTime, 500);
   }
+  
   function checkTime(i) {
     if (i < 10) {
       i = '0' + i;
@@ -78,14 +79,16 @@ const startMarried = () => {
 
   function startTime() {
     var today = new Date();
-    var h = today.getHours();
+    var h = today.getHours() - 5;
     var m = today.getMinutes();
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    timeNow.innerHTML = `${h} : ${m} : ${s}`;
+  
+    timeNow.innerHTML = `${h}h ${m}min ${s}s`;
     setTimeout(startTime, 500);
   }
+  
   function checkTime(i) {
     if (i < 10) {
       i = '0' + i;
