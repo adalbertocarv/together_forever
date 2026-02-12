@@ -1,5 +1,5 @@
 const startLove = () => {
-  const yourDate = new Date('Sat Feb 18 2023 17:40:00 GMT+0700');
+  const yourDate = new Date('Sat Feb 18 2023 07:40:00 GMT+0700');
   const dNow = new Date();
   let dateCount = document.querySelector('.date1');
   let timeNow = document.querySelector('.today1');
