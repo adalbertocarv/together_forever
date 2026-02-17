@@ -1,51 +1,42 @@
 const startLove = () => {
-  const yourDate = new Date('Sat Feb 18 2023 07:40:00 GMT+0700');
-  const dNow = new Date();
-  let dateCount = document.querySelector('.date1');
-  let timeNow = document.querySelector('.today1');
-
-  // get total seconds between the times
-  let delta = Math.floor(dNow.getTime() - yourDate.getTime()) / 1000;
-
-  // calculate (and subtract) whole days
-  let days = Math.floor(delta / 86400);
-  delta -= days * 86400;
-
-  // calculate (and subtract) whole hours
-  let hours = Math.floor(delta / 3600) % 24;
-  delta -= hours * 3600;
-
-  // calculate (and subtract) whole minutes
-  let minutes = Math.floor(delta / 60) % 60;
-  delta -= minutes * 60;
-
-  dateCount.textContent = `${
-    days >= 365
-      ? days % 365 === 0
-        ? Math.floor(days / 365) + 'A ❤ '
-        : Math.floor(days / 365) + 'A ❤ ' + (days % 365) + 'D'
-      : days + 'D'
-  }`;  
-
-  function startTime() {
-    var today = new Date();
-    var h = today.getHours() - 5;
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
+  // Data de início: 18 de Fevereiro de 2023, 16:00:00 (Horário de Brasília -03:00)
+  const startDate = new Date('2023-02-18T16:00:00-03:00');
   
+  const dateCount = document.querySelector('.date1');
+  const timeNow = document.querySelector('.today1');
+
+  const updateCounter = () => {
+    const now = new Date();
+    const diffInMs = Math.abs(now - startDate);
+    
+    // Cálculos de tempo
+    let totalSeconds = Math.floor(diffInMs / 1000);
+    let days = Math.floor(totalSeconds / 86400);
+    
+    let years = Math.floor(days / 365);
+    let remainingDays = days % 365;
+
+    // Formatação do texto de dias/anos
+    let displayDate = "";
+    if (years > 0) {
+      displayDate = `${years}A ❤ ${remainingDays}D`;
+    } else {
+      displayDate = `${days}D`;
+    }
+    
+    dateCount.textContent = displayDate;
+
+    // Relógio Digital (Hora atual do sistema)
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    
     timeNow.innerHTML = `${h}h ${m}min ${s}s`;
-    setTimeout(startTime, 500);
-  }
-  
-  function checkTime(i) {
-    if (i < 10) {
-      i = '0' + i;
-    } // add zero in front of numbers < 10
-    return i;
-  }
-  startTime();
+  };
+
+  // Atualiza a cada 1 segundo para o relógio ser fluido
+  setInterval(updateCounter, 1000);
+  updateCounter(); // Chamada inicial imediata
 }
 
 const startMarried = () => {
@@ -99,62 +90,40 @@ const startMarried = () => {
 }
 
 
-document.addEventListener(
-  'DOMContentLoaded',
-  function () {
-    const music = [/*'ctcht.mp3',*/ 'cmty.mp3'];
+document.addEventListener('DOMContentLoaded', function () {
+    const music = ['cmty.mp3'];
     let wrapper = document.querySelector('.wrapper');
 
     startLove();
 
-    // ainda nao
-    // startMarried();
+    // Configuração do Áudio
+    const audioElement = document.querySelector('audio');
+    if (audioElement) {
+      audioElement.setAttribute('src', `music/${music[Math.floor(Math.random() * music.length)]}`);
+    }
 
-    document
-      .querySelector('audio')
-      .setAttribute(
-        'src',
-        `music/${music[Math.floor(Math.random() * music.length)]}`
+    // Inserção do Canvas e Mask
+    if (wrapper) {
+      wrapper.insertAdjacentHTML(
+        'afterend',
+        `<div class='mask'></div><canvas class="canvas"></canvas>`
       );
+    }
 
-    wrapper.insertAdjacentHTML(
-      'afterend',
-      `<div class='mask'></div>
-        <canvas class="canvas"></canvas>`
-    );
-
-    // Canvas
+    // --- Lógica do Canvas (Corações) ---
     let canvas = document.querySelector('.canvas');
+    if (!canvas) return;
+    
     let c = canvas.getContext('2d');
-    let mouse = {
-      x: undefined,
-      y: undefined,
-    };
+    const colours = ['#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c', 'dodgerblue', 'greenyellow', 'yellow'];
 
-    window.addEventListener('mousemove', function (event) {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    });
-    const colours = new Array(
-      '#f00',
-      '#f06',
-      '#f0f',
-      '#f6f',
-      '#f39',
-      '#f9c',
-      'dodgerblue',
-      'greenyellow',
-      'yellow'
-    ); // colours of the hearts
-
-    //set size canvas
     function setCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
     setCanvas();
     window.addEventListener('resize', setCanvas);
-
+  
     function createX() {
       return Math.floor(Math.random() * canvas.width);
     }
